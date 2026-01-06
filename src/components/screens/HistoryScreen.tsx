@@ -15,6 +15,13 @@ export function HistoryScreen() {
     flag: 'FLAG LEVEL',
     time: 'TIME',
   });
+  const [openFilter, setOpenFilter] = useState<string | null>(null);
+
+  const filterOptions = {
+    type: ['All Types', 'CBC', 'BMP', 'CMP', 'Lipid Panel', 'LFT', 'HbA1c', 'Thyroid', 'Urine', 'Stool', 'Genetic', 'Other'],
+    flag: ['All', 'Red', 'Yellow', 'Green'],
+    time: ['All Time', 'Last 7 Days', 'Last Month', 'Last 3 Months'],
+  };
 
   const flagColors = {
     green: 'bg-success',
@@ -81,13 +88,31 @@ export function HistoryScreen() {
         {/* Filters */}
         <div className="flex gap-2 mt-4">
           {Object.entries(filters).map(([key, value]) => (
-            <button
-              key={key}
-              className="flex-1 h-9 px-3 rounded-lg bg-muted flex items-center justify-between text-body-sm text-text-secondary"
-            >
-              <span className="truncate">{value}</span>
-              <ChevronDown className="w-4 h-4 shrink-0" />
-            </button>
+            <div key={key} className="relative flex-1">
+              <button
+                onClick={() => setOpenFilter(openFilter === key ? null : key)}
+                className="w-full h-9 px-3 rounded-lg bg-muted flex items-center justify-between text-body-sm text-text-secondary"
+              >
+                <span className="truncate">{value}</span>
+                <ChevronDown className="w-4 h-4 shrink-0" />
+              </button>
+              {openFilter === key && (
+                <div className="absolute top-full left-0 right-0 mt-1 bg-card rounded-lg shadow-lg border border-border z-50 max-h-48 overflow-y-auto">
+                  {filterOptions[key as keyof typeof filterOptions].map((option) => (
+                    <button
+                      key={option}
+                      onClick={() => {
+                        setFilters({ ...filters, [key]: option.toUpperCase() });
+                        setOpenFilter(null);
+                      }}
+                      className="w-full px-3 py-2 text-left text-body-sm text-foreground hover:bg-muted transition-colors"
+                    >
+                      {option}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
         </div>
       </div>

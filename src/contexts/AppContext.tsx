@@ -75,6 +75,10 @@ interface AppContextType {
   setAuthMode: (mode: 'login' | 'signup') => void;
   showPremiumModal: boolean;
   setShowPremiumModal: (value: boolean) => void;
+  showNicknameModal: boolean;
+  setShowNicknameModal: (value: boolean) => void;
+  selectedFamilyMember: { id: string; name: string } | null;
+  setSelectedFamilyMember: (member: { id: string; name: string } | null) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -88,9 +92,11 @@ const mockReports: Report[] = [
 ];
 
 const mockFamilyMembers: FamilyMember[] = [
-  { id: '1', name: 'Mom', initials: 'M', status: 'good', connectionStatus: 'connected' },
-  { id: '2', name: 'Dad', initials: 'D', status: 'needs-review', connectionStatus: 'connected' },
-  { id: '3', name: 'Sarah', initials: 'S', status: 'pending', connectionStatus: 'pending-received' },
+  { id: '1', name: 'Kabir', initials: 'K', status: 'good', connectionStatus: 'connected' },
+  { id: '2', name: 'Aarohi', initials: 'A', status: 'needs-review', connectionStatus: 'connected' },
+  { id: '3', name: 'Vihaan', initials: 'V', status: 'pending', connectionStatus: 'pending-received' },
+  { id: '4', name: 'Saanvi', initials: 'S', status: 'good', connectionStatus: 'connected' },
+  { id: '5', name: 'Ishaan', initials: 'I', status: 'good', connectionStatus: 'connected' },
 ];
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
@@ -105,6 +111,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
   const [showPremiumModal, setShowPremiumModal] = useState(false);
+  const [showNicknameModal, setShowNicknameModal] = useState(false);
+  const [selectedFamilyMember, setSelectedFamilyMember] = useState<{ id: string; name: string } | null>(null);
 
   return (
     <AppContext.Provider
@@ -131,6 +139,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         setAuthMode,
         showPremiumModal,
         setShowPremiumModal,
+        showNicknameModal,
+        setShowNicknameModal,
+        selectedFamilyMember,
+        setSelectedFamilyMember,
       }}
     >
       {children}

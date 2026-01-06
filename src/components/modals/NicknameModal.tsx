@@ -1,22 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useApp } from '@/contexts/AppContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
 export function NicknameModal() {
-  const { currentScreen, setCurrentScreen, setActiveTab } = useApp();
+  const { showNicknameModal, setShowNicknameModal, selectedFamilyMember } = useApp();
   const [nickname, setNickname] = useState('');
 
-  if (currentScreen !== 'nickname-popup') return null;
+  useEffect(() => {
+    if (selectedFamilyMember) {
+      setNickname(selectedFamilyMember.name);
+    }
+  }, [selectedFamilyMember]);
+
+  if (!showNicknameModal) return null;
 
   const handleSave = () => {
-    setActiveTab('family');
-    setCurrentScreen('family');
+    // In real app, would update the family member's nickname
+    setShowNicknameModal(false);
   };
 
   const handleCancel = () => {
-    setActiveTab('family');
-    setCurrentScreen('family');
+    setShowNicknameModal(false);
   };
 
   return (
@@ -32,9 +37,12 @@ export function NicknameModal() {
         <h2 className="text-section text-foreground text-center mb-4">
           Set a nickname
         </h2>
+        <p className="text-body text-text-secondary text-center mb-4">
+          Change "{selectedFamilyMember?.name}" to a custom name
+        </p>
 
         <Input
-          placeholder="e.g., Mom, Dad, Dr. Smith"
+          placeholder="e.g., Son, Dad, Dr. Smith"
           value={nickname}
           onChange={(e) => setNickname(e.target.value)}
           className="mb-6"

@@ -107,23 +107,6 @@ export function HomeScreen() {
           </div>
         </div>
 
-        {/* Quick Stats */}
-        <div className="grid grid-cols-3 gap-3 mt-6 animate-fade-in delay-300">
-          <div className="card-elevated p-4 text-center">
-            <p className="text-title text-primary font-bold">42</p>
-            <p className="text-caption text-text-secondary mt-1">Reports</p>
-          </div>
-          <div className="card-elevated p-4 text-center">
-            <p className="text-title text-success font-bold flex items-center justify-center gap-1">
-              18 <span className="text-body">🔥</span>
-            </p>
-            <p className="text-caption text-text-secondary mt-1">Day Streak</p>
-          </div>
-          <div className="card-elevated p-4 text-center">
-            <p className="text-title text-accent font-bold">4</p>
-            <p className="text-caption text-text-secondary mt-1">Family</p>
-          </div>
-        </div>
       </div>
 
       <TabBar />
