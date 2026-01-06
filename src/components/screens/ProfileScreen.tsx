@@ -5,7 +5,6 @@ import { TabBar } from '@/components/TabBar';
 import { 
   User, 
   FileText, 
-  Bell, 
   Moon, 
   Sun,
   Shield, 
@@ -25,22 +24,26 @@ export function ProfileScreen() {
   const menuItems = [
     { icon: User, label: 'Edit Profile', onClick: () => setCurrentScreen('profile-setup') },
     { icon: FileText, label: 'Health Reports', badge: '18', onClick: () => {} },
-    { icon: Bell, label: 'Notifications', badge: '3', hasToggle: true, onClick: () => {} },
     { icon: theme === 'dark' ? Sun : Moon, label: 'App Theme', isTheme: true, onClick: toggleTheme },
     { icon: Shield, label: 'Privacy & Security', hasArrow: true, onClick: () => {} },
     { icon: HelpCircle, label: 'Help & Support', hasArrow: true, onClick: () => {} },
     { icon: Info, label: 'About', hasArrow: true, onClick: () => {} },
   ];
 
+  // Use Indian name as specified
+  const displayName = user?.firstName && user?.lastName 
+    ? `${user.firstName} ${user.lastName}` 
+    : 'Kabir Sharma';
+
   return (
     <div className="absolute inset-0 bg-background-secondary overflow-hidden flex flex-col">
-      {/* Header with Profile */}
+      {/* Header with Profile - No stats */}
       <div className="pt-12 px-5 pb-6 flex flex-col items-center">
         {/* Profile Photo */}
         <div className="relative">
           <div className="w-20 h-20 rounded-full bg-gradient-primary flex items-center justify-center shadow-primary">
             <span className="text-3xl font-bold text-primary-foreground">
-              {user?.firstName?.[0] || 'U'}
+              {user?.firstName?.[0] || 'K'}
             </span>
           </div>
           <button className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-card shadow-md flex items-center justify-center border border-border">
@@ -50,30 +53,8 @@ export function ProfileScreen() {
 
         {/* Name */}
         <h1 className="text-subtitle text-foreground mt-4 font-bold">
-          {user?.firstName} {user?.lastName || 'User'}
+          {displayName}
         </h1>
-
-        {/* Stats */}
-        <div className="flex gap-6 mt-4 px-4 py-3 bg-card rounded-xl shadow-sm">
-          <div className="text-center">
-            <p className="text-body-lg font-bold text-foreground">42</p>
-            <p className="text-caption text-text-secondary">Scans</p>
-          </div>
-          <div className="w-px bg-border" />
-          <div className="text-center">
-            <p className="text-body-lg font-bold text-foreground flex items-center gap-1">
-              18 <span>🔥</span>
-            </p>
-            <p className="text-caption text-text-secondary">Day Streak</p>
-          </div>
-          <div className="w-px bg-border" />
-          <div className="text-center">
-            <p className="text-body-lg font-bold text-foreground flex items-center gap-1">
-              4 <span>👨‍👩‍👧‍👦</span>
-            </p>
-            <p className="text-caption text-text-secondary">Family</p>
-          </div>
-        </div>
       </div>
 
       {/* Scrollable Content */}
@@ -102,13 +83,13 @@ export function ProfileScreen() {
             <div className="flex justify-between">
               <span className="text-body text-text-secondary">Emergency Contact</span>
               <span className="text-body font-medium text-foreground">
-                {user?.emergencyContact?.name || 'John'} ({user?.emergencyContact?.relationship || 'Husband'})
+                {user?.emergencyContact?.name || 'Priya'} ({user?.emergencyContact?.relationship || 'Wife'})
               </span>
             </div>
           </div>
         </div>
 
-        {/* Settings List */}
+        {/* Settings List - No notifications */}
         <div className="card-elevated overflow-hidden">
           {menuItems.map((item, index) => (
             <button
@@ -133,10 +114,6 @@ export function ProfileScreen() {
                   <span className="text-body-sm text-text-secondary capitalize">{theme}</span>
                   <Switch checked={theme === 'dark'} onCheckedChange={toggleTheme} />
                 </div>
-              )}
-              
-              {item.hasToggle && !item.isTheme && (
-                <Switch />
               )}
               
               {item.hasArrow && (

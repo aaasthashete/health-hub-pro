@@ -21,7 +21,7 @@ export function ProfileSetupScreen() {
 
   const [step, setStep] = useState(1);
 
-  const genderOptions = ['Male', 'Female', 'Non-binary', 'Prefer not to say'];
+  const genderOptions = ['Male', 'Female', 'Prefer not to say'];
   const bloodGroupOptions = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
   const relationshipOptions = ['Spouse', 'Parent', 'Sibling', 'Friend', 'Other'];
 
