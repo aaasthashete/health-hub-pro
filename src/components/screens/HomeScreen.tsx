@@ -41,25 +41,11 @@ export function HomeScreen() {
 
   return (
     <div className="absolute inset-0 bg-background overflow-hidden flex flex-col">
-      {/* Enhanced Background Layers */}
+      {/* Background Layers */}
       <div className={`absolute inset-0 bg-gradient-to-b ${getTimeColor()}`} />
       <div className="absolute inset-0 bg-grid-pattern opacity-50" />
-      <div className="absolute inset-0 bg-dna-pattern" />
       
-      {/* Floating DNA Animation */}
-      <div className="floating-dna" />
-      
-      {/* Pulse Wave at Bottom */}
-      <div className="pulse-wave" />
-      
-      {/* Microscopic Cell Patterns */}
-      <div className="floating-elements">
-        <div className="absolute top-24 right-8 w-4 h-4 rounded-full border border-primary/10 animate-float opacity-30" />
-        <div className="absolute top-40 left-6 w-3 h-3 rounded-full border border-secondary/10 animate-float delay-500 opacity-20" />
-        <div className="absolute top-60 right-20 w-2 h-2 rounded-full bg-primary/10 animate-pulse-gentle opacity-40" />
-      </div>
-      
-      {/* Decorative Gradient Blurs */}
+      {/* Decorative Elements */}
       <div className="absolute top-20 right-0 w-48 h-48 rounded-full bg-primary/5 blur-3xl" />
       <div className="absolute bottom-40 left-0 w-64 h-64 rounded-full bg-secondary/5 blur-3xl" />
       

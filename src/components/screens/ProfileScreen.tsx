@@ -37,30 +37,15 @@ export function ProfileScreen() {
 
   return (
     <div className="absolute inset-0 bg-background overflow-hidden flex flex-col">
-      {/* Enhanced Background */}
+      {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary/[0.03] to-transparent" />
-      <div className="absolute inset-0 bg-circles-pattern" />
       <div className="absolute -top-32 right-0 w-64 h-64 rounded-full bg-primary/5 blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-secondary/5 blur-3xl" />
-      
-      {/* Medical Cross Pattern */}
-      <div className="floating-elements">
-        <div className="absolute top-32 right-8 w-6 h-6 opacity-10">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-6 bg-primary rounded-full" />
-          <div className="absolute top-1/2 left-0 -translate-y-1/2 w-6 h-1.5 bg-primary rounded-full" />
-        </div>
-        <div className="absolute top-48 left-6 w-4 h-4 opacity-5 rotate-45">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1 h-4 bg-secondary rounded-full" />
-          <div className="absolute top-1/2 left-0 -translate-y-1/2 w-4 h-1 bg-secondary rounded-full" />
-        </div>
-      </div>
       
       {/* Header with Profile */}
       <div className="pt-12 px-5 pb-6 flex flex-col items-center relative">
-        {/* Profile Photo with Premium Effect */}
+        {/* Profile Photo */}
         <div className="relative animate-fade-in">
-          <div className="absolute inset-0 -m-3 rounded-full bg-gradient-primary opacity-20 blur-xl animate-pulse-gentle" />
-          <div className="absolute inset-0 -m-1 rounded-full border-2 border-primary/20 animate-spin" style={{ animationDuration: '20s' }} />
+          <div className="absolute inset-0 -m-2 rounded-full bg-gradient-primary opacity-20 blur-xl animate-pulse-gentle" />
           <div className="relative w-24 h-24 rounded-full bg-gradient-primary flex items-center justify-center shadow-primary">
             <span className="text-4xl font-bold text-primary-foreground">
               {user?.firstName?.[0] || 'K'}
@@ -78,16 +63,9 @@ export function ProfileScreen() {
 
       {/* Scrollable Content */}
       <div className="flex-1 overflow-y-auto px-5 pb-36 custom-scrollbar">
-        {/* Medical ID Card - Premium with Holographic Effect */}
+        {/* Medical ID Card - Premium */}
         <div className="card-medical p-5 mb-6 relative overflow-hidden animate-fade-in delay-150">
-          {/* Holographic Stripe */}
-          <div className="absolute top-0 right-0 w-16 h-full bg-gradient-to-b from-primary/10 via-secondary/10 to-premium/10 opacity-50" />
-          {/* Fingerprint Texture */}
-          <div className="absolute inset-0 opacity-[0.02]" style={{
-            backgroundImage: `radial-gradient(circle at 70% 50%, transparent 30%, hsl(var(--primary)) 30%, hsl(var(--primary)) 31%, transparent 31%),
-                              radial-gradient(circle at 70% 50%, transparent 35%, hsl(var(--primary)) 35%, hsl(var(--primary)) 36%, transparent 36%),
-                              radial-gradient(circle at 70% 50%, transparent 40%, hsl(var(--primary)) 40%, hsl(var(--primary)) 41%, transparent 41%)`
-          }} />
+          <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 to-primary/5" />
           <div className="relative">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-section text-foreground font-semibold flex items-center gap-2">
@@ -100,23 +78,18 @@ export function ProfileScreen() {
             </div>
             <div className="space-y-3">
               {[
-                { label: 'Blood Type', value: user?.bloodGroup || 'O+ Positive', icon: '🩸' },
-                { label: 'Allergies', value: user?.allergies || 'Penicillin, Peanuts', icon: '⚠️' },
-                { label: 'Conditions', value: user?.conditions || 'Type 2 Diabetes', icon: '💊' },
-                { label: 'Emergency', value: `${user?.emergencyContact?.name || 'Priya'} (${user?.emergencyContact?.relationship || 'Wife'})`, icon: '📞' },
+                { label: 'Blood Type', value: user?.bloodGroup || 'O+ Positive' },
+                { label: 'Allergies', value: user?.allergies || 'Penicillin, Peanuts' },
+                { label: 'Conditions', value: user?.conditions || 'Type 2 Diabetes' },
+                { label: 'Emergency', value: `${user?.emergencyContact?.name || 'Priya'} (${user?.emergencyContact?.relationship || 'Wife'})` },
               ].map((item, i) => (
                 <div key={item.label} className="flex justify-between items-center">
-                  <span className="text-body text-text-secondary flex items-center gap-2">
-                    <span className="text-xs">{item.icon}</span>
-                    {item.label}
-                  </span>
+                  <span className="text-body text-text-secondary">{item.label}</span>
                   <span className="text-body font-medium text-foreground">{item.value}</span>
                 </div>
               ))}
             </div>
           </div>
-          {/* Medical Cross Border Pattern */}
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-secondary/30 to-transparent" />
         </div>
 
         {/* Settings List */}
