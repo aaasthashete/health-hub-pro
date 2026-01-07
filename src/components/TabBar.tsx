@@ -30,28 +30,36 @@ export function TabBar() {
           key={tab.id}
           onClick={() => handleTabChange(tab.id)}
           className={cn(
-            "flex flex-col items-center justify-center w-[75px] py-2 transition-all duration-200",
+            "flex flex-col items-center justify-center w-[75px] py-2 transition-all duration-300 group",
             tab.isCenter && "relative -mt-6"
           )}
         >
           {tab.isCenter ? (
-            <div className="scan-button shadow-primary">
-              <Plus className="w-7 h-7 text-primary-foreground" />
+            <div className="scan-button">
+              <Plus className="w-7 h-7 text-primary-foreground relative z-10" strokeWidth={2.5} />
             </div>
           ) : (
             <>
-              <tab.icon 
-                className={cn(
-                  "w-6 h-6 transition-colors duration-200",
-                  activeTab === tab.id ? "text-primary" : "text-text-tertiary"
-                )}
-              />
+              <div className={cn(
+                "relative p-2 rounded-xl transition-all duration-300",
+                activeTab === tab.id && "bg-primary/10"
+              )}>
+                <tab.icon 
+                  className={cn(
+                    "w-6 h-6 transition-all duration-300",
+                    activeTab === tab.id 
+                      ? "text-primary scale-110" 
+                      : "text-text-tertiary group-hover:text-text-secondary"
+                  )}
+                  strokeWidth={activeTab === tab.id ? 2 : 1.5}
+                />
+              </div>
               <span 
                 className={cn(
-                  "text-xs mt-1 transition-colors duration-200",
+                  "text-xs mt-0.5 transition-all duration-300 font-medium",
                   activeTab === tab.id 
-                    ? "text-primary font-semibold" 
-                    : "text-text-tertiary font-normal"
+                    ? "text-primary" 
+                    : "text-text-tertiary group-hover:text-text-secondary"
                 )}
               >
                 {tab.label}
